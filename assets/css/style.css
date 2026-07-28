@@ -1,12 +1,12 @@
 /* =========================================================
-   Spector — Corporate / Product Website
+   Qisney market — SPECTR (스펙터) 조직/사업자 웹사이트
    Design system: light + dark aware, responsive, accessible
    ========================================================= */
 
 :root {
-  --brand: #2f5bff;
-  --brand-dark: #1f3fd6;
-  --brand-soft: #eaf0ff;
+  --brand: #15803d;
+  --brand-dark: #14532d;
+  --brand-soft: #e8f7ee;
   --ink: #10131a;
   --ink-2: #3a4152;
   --ink-3: #6b7280;
@@ -28,9 +28,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --brand: #6f8dff;
-    --brand-dark: #5878ff;
-    --brand-soft: #1a2136;
+    --brand: #4ade80;
+    --brand-dark: #22c55e;
+    --brand-soft: #142a1c;
     --ink: #f2f4f8;
     --ink-2: #c3c9d6;
     --ink-3: #8b93a5;
@@ -48,6 +48,7 @@
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 76px; }
 
 body {
   margin: 0;
@@ -119,6 +120,9 @@ img { max-width: 100%; display: block; }
   font-weight: 700; box-shadow: var(--shadow-sm);
 }
 .nav-cta:hover { background: var(--brand-dark); text-decoration: none; }
+@media (prefers-color-scheme: dark) {
+  .nav-cta { color: #06210f !important; }
+}
 .nav-toggle {
   display: none; background: none; border: 0; cursor: pointer;
   padding: 8px; color: var(--ink);
@@ -149,6 +153,9 @@ img { max-width: 100%; display: block; }
 }
 .btn-primary { background: var(--brand); color: #fff; box-shadow: var(--shadow-sm); }
 .btn-primary:hover { background: var(--brand-dark); text-decoration: none; transform: translateY(-1px); }
+@media (prefers-color-scheme: dark) {
+  .btn-primary { color: #06210f; }
+}
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--brand); color: var(--brand); text-decoration: none; }
 
@@ -183,44 +190,46 @@ img { max-width: 100%; display: block; }
 .hero-meta strong { display: block; font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
 .hero-meta span { font-size: 13px; color: var(--ink-3); }
 
-/* Phone mockup */
+/* Phone mockup (wraps a real in-app screenshot) */
 .phone-wrap { display: grid; place-items: center; }
 .phone {
-  width: 280px; aspect-ratio: 9 / 19;
-  border-radius: 40px; padding: 12px;
+  width: 260px; aspect-ratio: 390 / 844;
+  border-radius: 40px; padding: 10px;
   background: linear-gradient(160deg, #202536, #0d1017);
   box-shadow: var(--shadow-lg);
   position: relative;
 }
 .phone::before {
-  content: ""; position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
-  width: 120px; height: 22px; border-radius: 999px; background: #0d1017; z-index: 3;
+  content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 20px; border-radius: 999px; background: #0d1017; z-index: 3;
 }
 .phone-screen {
   width: 100%; height: 100%; border-radius: 30px; overflow: hidden;
-  background: linear-gradient(180deg, var(--brand), var(--brand-dark));
-  color: #fff; display: flex; flex-direction: column;
+  background: #000;
 }
-.phone-app-top { padding: 46px 20px 16px; }
-.phone-app-top small { opacity: .8; font-size: 12px; }
-.phone-app-top h3 { margin: 4px 0 0; font-size: 20px; }
-.phone-card-stack { flex: 1; background: #fff; color: var(--ink); border-radius: 24px 24px 0 0; padding: 18px; margin-top: 8px; display: flex; flex-direction: column; gap: 12px; }
-@media (prefers-color-scheme: dark) { .phone-card-stack { background: #10131c; } }
-.pc {
-  border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
-  display: flex; align-items: center; gap: 12px; background: var(--bg-2);
-}
-.pc .dot { width: 34px; height: 34px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; font-weight: 800; }
-.pc .pc-t { font-weight: 700; font-size: 14px; }
-.pc .pc-s { font-size: 12px; color: var(--ink-3); }
-.pc .bar { margin-left: auto; width: 42px; height: 8px; border-radius: 999px; background: var(--brand); opacity: .85; }
-.pc .bar.b2 { width: 28px; opacity: .5; }
-.pc .bar.b3 { width: 34px; opacity: .35; }
+.phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .phone-wrap { order: -1; }
 }
+
+/* Screenshot gallery */
+.shot-gallery {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+.shot-card {
+  background: #000; border-radius: 20px; overflow: hidden; border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm); aspect-ratio: 390 / 844; position: relative;
+}
+.shot-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot-card .cap {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 12px;
+  background: linear-gradient(0deg, rgba(0,0,0,.82), transparent);
+  color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: .01em;
+}
+@media (max-width: 980px) { .shot-gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .shot-gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
 
 /* ---------- Sections ---------- */
 section.block { padding: 80px 0; }
@@ -307,8 +316,8 @@ section.block { padding: 80px 0; }
 }
 .cta-band h2 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 32px); }
 .cta-band p { margin: 0 0 24px; opacity: .92; font-size: 17px; }
-.cta-band .btn-primary { background: #fff; color: var(--brand); }
-.cta-band .btn-primary:hover { background: #f0f3ff; }
+.cta-band .btn-primary { background: #fff; color: var(--brand-dark) !important; }
+.cta-band .btn-primary:hover { background: #eafbf0; }
 .cta-band .btn-ghost { color: #fff; border-color: rgba(255,255,255,.5); }
 .cta-band .btn-ghost:hover { border-color: #fff; color: #fff; }
 
@@ -361,6 +370,16 @@ section.block { padding: 80px 0; }
   border-radius: var(--radius-sm); padding: 16px 18px; margin: 20px 0; color: var(--ink-2); font-size: 14.5px;
 }
 .doc .back { display: inline-block; margin-bottom: 24px; font-weight: 600; }
+
+/* Entertainment disclaimer banner (used on the homepage + FAQ) */
+.disclaimer {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--brand-soft); border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+  border-radius: var(--radius-sm); padding: 16px 18px; margin: 28px 0;
+  color: var(--ink-2); font-size: 14.5px; line-height: 1.6;
+}
+.disclaimer .mark { flex: none; font-size: 18px; line-height: 1; }
+.disclaimer strong { color: var(--ink); }
 
 /* utilities */
 .hide { display: none !important; }
