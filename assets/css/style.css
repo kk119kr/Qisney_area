@@ -371,6 +371,43 @@ section.block { padding: 80px 0; }
 }
 .doc .back { display: inline-block; margin-bottom: 24px; font-weight: 600; }
 
+/* Project grid — extensible portfolio cards (add more, layout just wraps) */
+.project-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+}
+.project-card {
+  display: flex; flex-direction: column;
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm); transition: .2s ease;
+  text-decoration: none; color: inherit;
+}
+a.project-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); text-decoration: none; }
+.project-card.disabled { cursor: default; }
+.project-thumb {
+  aspect-ratio: 16 / 10; background: #000; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project-thumb.placeholder {
+  background: linear-gradient(135deg, var(--brand-soft), var(--bg-3));
+  font-size: 44px; color: var(--brand);
+}
+.project-thumb.next {
+  background: var(--bg-2); border-bottom: 1px dashed var(--line);
+  font-size: 30px; color: var(--ink-3);
+}
+.project-body { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.project-tag {
+  align-self: flex-start; font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-dark);
+}
+.project-tag.tag-muted { background: var(--bg-3); color: var(--ink-3); }
+.project-body h3 { margin: 4px 0 0; font-size: 19px; letter-spacing: -.01em; }
+.project-body p { margin: 0; color: var(--ink-2); font-size: 14.5px; flex: 1; }
+.project-link { margin-top: 6px; font-weight: 700; color: var(--brand); font-size: 14px; }
+.project-link.muted { color: var(--ink-3); font-weight: 600; }
+.project-card-next { border-style: dashed; box-shadow: none; background: transparent; }
+
 /* Entertainment disclaimer banner (used on the homepage + FAQ) */
 .disclaimer {
   display: flex; gap: 12px; align-items: flex-start;
